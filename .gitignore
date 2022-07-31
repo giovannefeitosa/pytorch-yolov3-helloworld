@@ -16,3 +16,6 @@ checkpoints/
 logs/
 
 .python-version
+
+python_modules/
+coco/
