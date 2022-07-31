@@ -33,7 +33,7 @@ Close everything before testing!
 #### Custom dataset from scratch
 
 ```
-poetry run yolo-train --n_cpu 1 --epochs 1 --model config/custom.cfg --data config/custom.data --checkpoint_interval 1 --evaluation_interval 1
+poetry run yolo-train --n_cpu 8 --epochs 30 --model config/custom.cfg --data config/custom.data --checkpoint_interval 10 --evaluation_interval 10 --nms_thres 1.0
 ```
 
 #### Yolov3 (pretrained)
