@@ -19,3 +19,5 @@ logs/
 
 python_modules/
 coco/
+labels.tar.gz
+images.tar.gz

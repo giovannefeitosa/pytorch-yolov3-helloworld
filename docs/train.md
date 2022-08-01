@@ -36,6 +36,18 @@ Close everything before testing!
 poetry run yolo-train --n_cpu 8 --epochs 30 --model config/custom.cfg --data config/custom.data --checkpoint_interval 10 --evaluation_interval 10 --nms_thres 1.0
 ```
 
+> GPU
+
+Had to set this environment variable to work with 5gb video card.
+
+```
+PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:4310
+```
+
+But this didn't solve the issue.
+
+Then I changed `batch=16` to `batch=1` in this file: `config/custom.cfg`
+
 #### Yolov3 (pretrained)
 
 Slow
