@@ -15,13 +15,13 @@ function main() {
 
   # untar
   if [ -f "$VOCTAR" ]; then
-    tar -xvf "$VOCTAR"
+    tar -xvf "$VOCTAR" -C "$HERE"
   fi
 
   # update folder stucture
   if [ -d "$HERE/VOCdevkit" ]; then
-    mv VOCdevkit/VOC2012 VOC2012
-    rm -rf VOCdevkit
+    mv "$HERE/VOCdevkit/VOC2012" "$HERE/VOC2012"
+    rm -rf "$HERE/VOCdevkit"
   fi
 
 
