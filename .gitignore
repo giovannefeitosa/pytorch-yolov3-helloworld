@@ -6,6 +6,12 @@ build
 dist
 output/
 data/*
+!data/custom/images/train.jpg
+!data/custom/labels/train.txt
+!data/samples
+!data/coco.names
+!data/get_coco_dataset.sh
+!data/get_pascal_voc_dataset.sh
 backup
 weights/*.weights
 weights/*.conv.*
