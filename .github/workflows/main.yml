@@ -71,8 +71,8 @@ jobs:
         name: Download coco dataset
         run: /bin/bash ./data/get_coco_dataset.sh
 
-      #- name: Demo Training
-      #  run: $HOME/.local/bin/poetry run yolo-train --n_cpu 2 --data config/custom.data  --model config/yolov3.cfg --epochs 1
+      - name: Demo Training
+        run: $HOME/.local/bin/poetry run yolo-train --n_cpu 2 --epochs 1 --data config/custom.data  --model config/yolov3.cfg --pretrained_weights weights/darknet53.conv.74
 
       #- name: Demo Evaluate
       #  run: poetry run yolo-test --n_cpu 2 --data config/custom.data  --model config/yolov3.cfg --weights checkpoints/yolov3_ckpt_29.pth
