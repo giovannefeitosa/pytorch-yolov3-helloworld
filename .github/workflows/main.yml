@@ -5,28 +5,32 @@ on: [push]
 jobs:
   main:
     runs-on: self-hosted
-    defaults:
-      run:
-        shell: bash -l {0}
     steps:
       - uses: actions/checkout@v3
-
-      - uses: conda-incubator/setup-miniconda@v2
+      - name: Install poetry
+        run: pipx install poetry
+      - uses: actions/setup-python@v4
         with:
-          # use-mamba: true
-          # python-version: 3.7
-          # mamba-version: "*"
-          # channels: conda-forge, defaults
-          # channel-priority: true
-          activate-environment: pytorch-yolov3-helloworld
-          environment-file: conda-environment.yml
-          # auto-activate-base: false
+          python-version: '3.10'
+          cache: 'poetry'
+      - run: poetry install
+
+      # - uses: conda-incubator/setup-miniconda@v2
+      #   with:
+      #     # use-mamba: true
+      #     # python-version: 3.7
+      #     # mamba-version: "*"
+      #     # channels: conda-forge, defaults
+      #     # channel-priority: true
+      #     activate-environment: pytorch-yolov3-helloworld
+      #     environment-file: conda-environment.yml
+      #     # auto-activate-base: false
 
       # - name: Upgrade pip
       #   run: python3 -m pip install --upgrade pip
       
-      - name: Install Poetry
-        run: pip install poetry --user
+      #- name: Install Poetry
+      #  run: pip install poetry --user
       # pip3 install urllib3 importlib-metadata>=4.4 poetry --user
       # poetry add certifi
 
@@ -35,18 +39,18 @@ jobs:
       #   with:
       #     poetry-version: "1.1.11"
 
-      - name: Install Dependencies
-        run: poetry install
+      #- name: Install Dependencies
+      #  run: poetry install
 
       #- name: Pin setup tools (remove for next torch release)
       #  run: poetry run pip install setuptools==59.5.0
 
       # Prints the help pages of all scripts to see if the imports etc. work
-      - name: Test the help pages
-        run: |
-          poetry run yolo-train -h
-          poetry run yolo-test -h
-          poetry run yolo-detect -h
+      #- name: Test the help pages
+      #  run: |
+      #    poetry run yolo-train -h
+      #    poetry run yolo-test -h
+      #    poetry run yolo-detect -h
 
       #- name: Demo Training
       #  run: poetry run yolo-train --n_cpu 2 --data config/custom.data  --model config/yolov3.cfg --epochs 1
@@ -57,14 +61,14 @@ jobs:
       #- name: Demo Detect
       #  run: poetry run yolo-detect --n_cpu 2 --batch_size 2 --weights checkpoints/yolov3_ckpt_29.pth
 
-  linter:
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Flake8
-        uses: TrueBrain/actions-flake8@master
-        with:
-          only_warn: 1
-          max_line_length: 150
-          path: pytorchyolo
+  #linter:
+  #  runs-on: ubuntu-18.04
+  #  steps:
+  #    - uses: actions/checkout@v2
+  #
+  #    - name: Flake8
+  #      uses: TrueBrain/actions-flake8@master
+  #      with:
+  #        only_warn: 1
+  #        max_line_length: 150
+  #        path: pytorchyolo
