@@ -4,37 +4,39 @@
 function main() {
   local HERE=$(cd $(dirname $0) && pwd -P)
   local PROJECT_ROOT=$(cd $HERE/.. && pwd -P)
-  cd "$HERE"
 
-  # enable echo to see the commands
-  set -x
   # stop on error
   set -e
 
   # Clone COCO API
-  if [ ! -d "coco" ]; then
+  if [ ! -d "$HERE/coco" ]; then
+    cd "$HERE"
+    echo "Cloning COCO API..."
     git clone https://github.com/pdollar/coco
   fi
 
-  mkdir -p coco/images
-  cd "$HERE/coco/images"
+  mkdir -p "$HERE/coco/images"
 
   # Download Images
-  if [ ! -f "train2014.zip" ]; then
+  if [ ! -f "$HERE/coco/images/train2014.zip" ]; then
+    cd "$HERE/coco/images"
     echo 'Downloading train2014.zip'
     wget -q -c "https://pjreddie.com/media/files/train2014.zip" --header "Referer: pjreddie.com"
   fi
-  if [ ! -f "val2014.zip" ]; then
+  if [ ! -f "$HERE/coco/images/val2014.zip" ]; then
+    cd "$HERE/coco/images"
     echo 'Downloading val2014.zip'
     wget -q -c "https://pjreddie.com/media/files/val2014.zip" --header "Referer: pjreddie.com"
   fi
 
   # Unzip
-  if [ ! -d "train2014" ]; then
+  if [ ! -d "$HERE/coco/images/train2014" ]; then
+    cd "$HERE/coco/images"
     echo 'Unzipping train2014.zip'
     unzip train2014.zip
   fi
-  if [ ! -d "val2014" ]; then
+  if [ ! -d "$HERE/coco/images/val2014" ]; then
+    cd "$HERE/coco/images"
     echo 'Unzipping val2014.zip'
     unzip val2014.zip
   fi
@@ -42,31 +44,31 @@ function main() {
   cd "$HERE/coco"
 
   # Download COCO Metadata
-  if [ ! -f "instances_train-val2014.zip" ]; then
+  if [ ! -f "$HERE/coco/instances_train-val2014.zip" ]; then
     echo 'Downloading instances_train-val2014.zip'
     wget -q -c "https://pjreddie.com/media/files/instances_train-val2014.zip" --header "Referer: pjreddie.com"
   fi
-  if [ ! -f "5k.part" ]; then
+  if [ ! -f "$HERE/coco/5k.part" ]; then
     echo 'Downloading 5k.part'
     wget -q -c "https://pjreddie.com/media/files/coco/5k.part" --header "Referer: pjreddie.com"
   fi
-  if [ ! -f "trainvalno5k.part" ]; then
+  if [ ! -f "$HERE/coco/trainvalno5k.part" ]; then
     echo 'Downloading trainvalno5k.part'
     wget -q -c "https://pjreddie.com/media/files/coco/trainvalno5k.part" --header "Referer: pjreddie.com"
   fi
-  if [ ! -f "labels.tgz" ]; then
+  if [ ! -f "$HERE/coco/labels.tgz" ]; then
     echo 'Downloading labels.tgz'
     wget -q -c "https://pjreddie.com/media/files/coco/labels.tgz" --header "Referer: pjreddie.com"
   fi
 
-  if [ ! -d "labels" ]; then
+  if [ ! -d "$HERE/coco/labels" ]; then
     echo 'Unzipping labels.tgz'
     tar xzf labels.tgz
   fi
 
-  if [ ! -d "annotations" ]; then
+  if [ ! -d "$HERE/coco/annotations" ]; then
     echo 'Unzipping instances_train-val2014.zip'
-    unzip -q instances_train-val2014.zip
+    unzip instances_train-val2014.zip
   fi
 
   # Set Up Image Lists
