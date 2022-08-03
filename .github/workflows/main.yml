@@ -47,8 +47,13 @@ jobs:
       # Prints the help pages of all scripts to see if the imports etc. work
       - name: Test the help pages
         run: |
+          pip install opencv-contrib-python
+
+          echo '--> poetry run yolo-train -h'
           $HOME/.local/bin/poetry run yolo-train -h
+          echo '--> poetry run yolo-test -h'
           $HOME/.local/bin/poetry run yolo-test -h
+          echo '--> poetry run yolo-demo -h'
           $HOME/.local/bin/poetry run yolo-detect -h
 
       #- name: Demo Training
