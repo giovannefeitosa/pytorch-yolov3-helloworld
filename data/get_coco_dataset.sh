@@ -33,12 +33,12 @@ function main() {
   if [ ! -d "$HERE/coco/images/train2014" ]; then
     cd "$HERE/coco/images"
     echo 'Unzipping train2014.zip'
-    unzip train2014.zip
+    unzip -q train2014.zip
   fi
   if [ ! -d "$HERE/coco/images/val2014" ]; then
     cd "$HERE/coco/images"
     echo 'Unzipping val2014.zip'
-    unzip val2014.zip
+    unzip -q val2014.zip
   fi
   
   cd "$HERE/coco"
@@ -68,7 +68,7 @@ function main() {
 
   if [ ! -d "$HERE/coco/annotations" ]; then
     echo 'Unzipping instances_train-val2014.zip'
-    unzip instances_train-val2014.zip
+    unzip -q instances_train-val2014.zip
   fi
 
   # Set Up Image Lists
