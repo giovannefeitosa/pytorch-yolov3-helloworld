@@ -15,13 +15,14 @@ jobs:
       #     python-version: 3.7
       - uses: conda-incubator/setup-miniconda@v2
         with:
+          use-mamba: true
           python-version: 3.7
           mamba-version: "*"
           channels: conda-forge, defaults
           channel-priority: true
           activate-environment: pytorch-yolov3-helloworld
-          environment-file: conda-environment.yml
-          # auto-activate-base: false
+          # environment-file: conda-environment.yml
+          auto-activate-base: false
       - shell: bash -l {0}
         run: |
           conda info
