@@ -30,9 +30,9 @@ jobs:
           # auto-activate-base: false
       - run: |
           conda info
-          conda list
-          conda config --show-sources
-          conda config --show
+      # conda list
+      # conda config --show-sources
+      # conda config --show
       # -------------------------------------
 
       - name: Upgrade pip
@@ -40,7 +40,7 @@ jobs:
       
       - name: Install Poetry
         run: |
-          pip3 install poetry --user
+          pip3 install urllib3 poetry --user
           poetry add certifi
 
       - name: Install Dependencies
