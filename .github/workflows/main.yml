@@ -14,6 +14,17 @@ jobs:
       - run: pip install poetry --user
       - run: $HOME/.local/bin/poetry install
 
+      - name: Cache weights and datasets
+        id: cache-weights-datasets
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-weights-datasets
+        with:
+          path: .
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
+          restore-keys:
+            - ${{ runner.os }}-build-${{ env.cache-name }}
+
       # - uses: conda-incubator/setup-miniconda@v2
       #   with:
       #     # use-mamba: true
@@ -54,7 +65,8 @@ jobs:
           echo '--> poetry run yolo-demo -h'
           $HOME/.local/bin/poetry run yolo-detect -h
 
-      - name: Download weights
+      - if: ${{ steps.cache-weights-datasets.outputs.cache-hit == 'false' }}
+        name: Download weights
         run: /bin/bash ./weights/download_weights.sh
       
       - name: Download coco dataset
