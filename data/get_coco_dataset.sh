@@ -5,6 +5,9 @@ function main() {
   local HERE=$(cd $(dirname $0) && pwd -P)
   local PROJECT_ROOT=$(cd $HERE/.. && pwd -P)
 
+  echo "HERE=$HERE"
+  echo "PROJECT_ROOT=$PROJECT_ROOT"
+
   # stop on error
   set -e
 
