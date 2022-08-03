@@ -16,10 +16,10 @@ function main() {
 
   # Download Images
   if [ ! -f "train2014.zip" ]; then
-    wget -c "https://pjreddie.com/media/files/train2014.zip" --header "Referer: pjreddie.com"
+    wget -q -c "https://pjreddie.com/media/files/train2014.zip" --header "Referer: pjreddie.com"
   fi
   if [ ! -f "val2014.zip" ]; then
-    wget -c "https://pjreddie.com/media/files/val2014.zip" --header "Referer: pjreddie.com"
+    wget -q -c "https://pjreddie.com/media/files/val2014.zip" --header "Referer: pjreddie.com"
   fi
 
   # Unzip
@@ -34,16 +34,16 @@ function main() {
 
   # Download COCO Metadata
   if [ ! -f "instances_train-val2014.zip" ]; then
-    wget -c "https://pjreddie.com/media/files/instances_train-val2014.zip" --header "Referer: pjreddie.com"
+    wget -q -c "https://pjreddie.com/media/files/instances_train-val2014.zip" --header "Referer: pjreddie.com"
   fi
   if [ ! -f "5k.part" ]; then
-    wget -c "https://pjreddie.com/media/files/coco/5k.part" --header "Referer: pjreddie.com"
+    wget -q -c "https://pjreddie.com/media/files/coco/5k.part" --header "Referer: pjreddie.com"
   fi
   if [ ! -f "trainvalno5k.part" ]; then
-    wget -c "https://pjreddie.com/media/files/coco/trainvalno5k.part" --header "Referer: pjreddie.com"
+    wget -q -c "https://pjreddie.com/media/files/coco/trainvalno5k.part" --header "Referer: pjreddie.com"
   fi
   if [ ! -f "labels.tgz" ]; then
-    wget -c "https://pjreddie.com/media/files/coco/labels.tgz" --header "Referer: pjreddie.com"
+    wget -q -c "https://pjreddie.com/media/files/coco/labels.tgz" --header "Referer: pjreddie.com"
   fi
 
   if [ ! -d "labels" ]; then
