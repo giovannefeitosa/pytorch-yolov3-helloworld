@@ -29,6 +29,7 @@ jobs:
       - run: |
           conda info
           conda list
+          conda config --show-sources
           conda config --show
       # -------------------------------------
 

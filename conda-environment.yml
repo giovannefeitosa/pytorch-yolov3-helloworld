@@ -1,3 +1,4 @@
+name: pytorch-yolov3-helloworld
 channels:
   - defaults
 dependencies:
