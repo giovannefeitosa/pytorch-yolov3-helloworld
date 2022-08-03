@@ -40,7 +40,7 @@ jobs:
       
       - name: Install Poetry
         run: |
-          pip3 install urllib3 poetry --user
+          pip3 install urllib3 importlib-metadata>=4.4 poetry --user
           poetry add certifi
 
       - name: Install Dependencies
