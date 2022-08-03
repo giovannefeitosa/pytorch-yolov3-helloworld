@@ -17,6 +17,8 @@ jobs:
       #   with:
       #     python-version: 3.7
       - uses: conda-incubator/setup-miniconda@v2
+        env:
+          CONDA: /home/h/miniconda3
         with:
           # use-mamba: true
           # python-version: 3.7
