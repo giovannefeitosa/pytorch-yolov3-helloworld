@@ -22,8 +22,6 @@ jobs:
         with:
           path: .
           key: ${{ runner.os }}-build-${{ env.cache-name }}
-          restore-keys:
-            - ${{ runner.os }}-build-${{ env.cache-name }}
 
       # - uses: conda-incubator/setup-miniconda@v2
       #   with:
