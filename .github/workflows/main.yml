@@ -47,17 +47,18 @@ jobs:
       # Prints the help pages of all scripts to see if the imports etc. work
       - name: Test the help pages
         run: |
-          pip install opencv-contrib-python
-
           echo '--> poetry run yolo-train -h'
           $HOME/.local/bin/poetry run yolo-train -h
           echo '--> poetry run yolo-test -h'
           $HOME/.local/bin/poetry run yolo-test -h
           echo '--> poetry run yolo-demo -h'
           $HOME/.local/bin/poetry run yolo-detect -h
+      
+      - name: Download coco dataset
+        run: ./data/get_coco_dataset.sh
 
       - name: Demo Training
-        run: poetry run yolo-train --n_cpu 2 --data config/custom.data  --model config/yolov3.cfg --epochs 1
+        run: $HOME/.local/bin/poetry run yolo-train --n_cpu 2 --data config/custom.data  --model config/yolov3.cfg --epochs 1
 
       #- name: Demo Evaluate
       #  run: poetry run yolo-test --n_cpu 2 --data config/custom.data  --model config/yolov3.cfg --weights checkpoints/yolov3_ckpt_29.pth

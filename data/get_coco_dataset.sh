@@ -1,32 +1,62 @@
 #!/bin/bash
-
 # CREDIT: https://github.com/pjreddie/darknet/tree/master/scripts/get_coco_dataset.sh
 
-# Clone COCO API
-git clone https://github.com/pdollar/coco
-cd coco
+function main() {
+  local HERE=$(cd $(dirname $0) && pwd -P)
+  local PROJECT_ROOT=$(cd $HERE/.. && pwd -P)
+  cd "$HERE"
 
-mkdir images
-cd images
+  # Clone COCO API
+  if [ ! -d "coco" ]; then
+    git clone https://github.com/pdollar/coco
+  fi
 
-# Download Images
-wget -c "https://pjreddie.com/media/files/train2014.zip" --header "Referer: pjreddie.com"
-wget -c "https://pjreddie.com/media/files/val2014.zip" --header "Referer: pjreddie.com"
+  mkdir -p coco/images
+  cd "$HERE/coco/images"
 
-# Unzip
-unzip -q train2014.zip
-unzip -q val2014.zip
+  # Download Images
+  if [ ! -f "train2014.zip" ]; then
+    wget -c "https://pjreddie.com/media/files/train2014.zip" --header "Referer: pjreddie.com"
+  fi
+  if [ ! -f "val2014.zip" ]; then
+    wget -c "https://pjreddie.com/media/files/val2014.zip" --header "Referer: pjreddie.com"
+  fi
 
-cd ..
+  # Unzip
+  if [ ! -d "train2014" ]; then
+    unzip train2014.zip
+  fi
+  if [ ! -d "val2014" ]; then
+    unzip val2014.zip
+  fi
+  
+  cd "$HERE/coco"
 
-# Download COCO Metadata
-wget -c "https://pjreddie.com/media/files/instances_train-val2014.zip" --header "Referer: pjreddie.com"
-wget -c "https://pjreddie.com/media/files/coco/5k.part" --header "Referer: pjreddie.com"
-wget -c "https://pjreddie.com/media/files/coco/trainvalno5k.part" --header "Referer: pjreddie.com"
-wget -c "https://pjreddie.com/media/files/coco/labels.tgz" --header "Referer: pjreddie.com"
-tar xzf labels.tgz
-unzip -q instances_train-val2014.zip
+  # Download COCO Metadata
+  if [ ! -f "instances_train-val2014.zip" ]; then
+    wget -c "https://pjreddie.com/media/files/instances_train-val2014.zip" --header "Referer: pjreddie.com"
+  fi
+  if [ ! -f "5k.part" ]; then
+    wget -c "https://pjreddie.com/media/files/coco/5k.part" --header "Referer: pjreddie.com"
+  fi
+  if [ ! -f "trainvalno5k.part" ]; then
+    wget -c "https://pjreddie.com/media/files/coco/trainvalno5k.part" --header "Referer: pjreddie.com"
+  fi
+  if [ ! -f "labels.tgz" ]; then
+    wget -c "https://pjreddie.com/media/files/coco/labels.tgz" --header "Referer: pjreddie.com"
+  fi
 
-# Set Up Image Lists
-paste <(awk "{print \"$PWD\"}" <5k.part) 5k.part | tr -d '\t' > 5k.txt
-paste <(awk "{print \"$PWD\"}" <trainvalno5k.part) trainvalno5k.part | tr -d '\t' > trainvalno5k.txt
+  if [ ! -d "labels" ]; then
+    tar xzf labels.tgz
+  fi
+
+  if [ ! -d "annotations" ]; then
+    unzip -q instances_train-val2014.zip
+  fi
+
+  # Set Up Image Lists
+  paste <(awk "{print \"$PWD\"}" <5k.part) 5k.part | tr -d '\t' > 5k.txt
+  paste <(awk "{print \"$PWD\"}" <trainvalno5k.part) trainvalno5k.part | tr -d '\t' > trainvalno5k.txt
+}
+
+main
