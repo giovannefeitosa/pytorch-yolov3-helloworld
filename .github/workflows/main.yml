@@ -8,10 +8,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      # -------------------------------------
+      # - name: Set up Python
+      #   uses: actions/setup-python@v4
+      #   with:
+      #     python-version: 3.7
+      - uses: conda-incubator/setup-miniconda@v2
         with:
+          # activate-environment: test
+          environment-file: environment.yml
           python-version: 3.7
+          # auto-activate-base: false
+      - shell: bash -l {0}
+        run: |
+          conda info
+          conda list
+      # -------------------------------------
 
       - name: Upgrade pip
         run: python3 -m pip install --upgrade pip
