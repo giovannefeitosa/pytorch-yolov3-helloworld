@@ -3,6 +3,7 @@ name: Ubuntu CI
 on: [push]
 
 jobs:
+  timeout-minutes: 6000
   main:
     runs-on: self-hosted
     steps:
