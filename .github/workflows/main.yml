@@ -3,9 +3,9 @@ name: Ubuntu CI
 on: [push]
 
 jobs:
-  timeout-minutes: 6000
   main:
     runs-on: self-hosted
+    timeout-minutes: 99999999
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
