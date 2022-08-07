@@ -47,7 +47,7 @@ for xml_file in xml_files:
     # write to file
     with open(os.path.join(VOC2012_LABELS_DIR, label_file), 'a') as f:
       f.write(f"{class_id} {x_center} {y_center} {width} {height}\n")
-  print(f'Created data/VOC2012/labels/{label_file}')
+  # print(f'Created data/VOC2012/labels/{label_file}')
 
 # write class names to file
 with open(VOC2012_NAMES_FILE, 'w') as f:

@@ -50,18 +50,18 @@ Then I changed `batch=16` to `batch=1` in this file: `config/custom.cfg`
 
 #### Yolov3 (pretrained)
 
-Slow
+Really Really Slow
 
 ```
-poetry run yolo-train --n_cpu 8 --epochs 300 --data config/coco.data --model config/yolov3.cfg --pretrained_weights weights/darknet53.conv.74
+poetry run yolo-train --n_cpu 8 --epochs 1 --data config/coco.data --model config/yolov3.cfg --pretrained_weights weights/darknet53.conv.74
 ```
 
 #### Yolov3 Tiny (pretrained)
 
-Not working (infer identifies everything as person)
+TESTING!
 
 ```
-poetry run yolo-train --n_cpu 8 --epochs 1 --data config/yolov3-tiny.data --model config/yolov3-tiny.cfg --pretrained_weights weights/yolov3-tiny.weights
+poetry run yolo-train --n_cpu 8 --epochs 5 --data config/yolov3-tiny.data --model config/yolov3-tiny.cfg --pretrained_weights weights/yolov3-tiny.weights
 ```
 
 ## Open Tensorboard
