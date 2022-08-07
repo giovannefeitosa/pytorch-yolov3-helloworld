@@ -26,7 +26,7 @@ function main() {
 
 
   $PROJECT_ROOT/python_modules/bin/python \
-    $PROJECT_ROOT/etc/python_scripts/convert_pascal_voc_2012_dataset.py
+  $PROJECT_ROOT/etc/python_scripts/convert_pascal_voc_2012_dataset.py
 }
 
 main
