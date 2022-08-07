@@ -7,8 +7,8 @@ HERE=os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT=os.path.abspath(os.path.join(HERE, '../..'))
 VOC2012_DIR=os.path.join(PROJECT_ROOT, 'data/VOC2012')
 VOC2012_XML_DIR=os.path.join(VOC2012_DIR, 'Annotations')
-VOC2012_LABELS_DIR=os.path.join(VOC2012_DIR, 'Labels')
-VOC2012_NAMES_FILE=os.path.join(VOC2012_DIR, 'VOC2012.names')
+VOC2012_LABELS_DIR=os.path.join(VOC2012_DIR, 'labels')
+VOC2012_NAMES_FILE=os.path.join(VOC2012_DIR, 'voc2012.names')
 
 # create a new directory for the converted dataset
 if os.path.exists(VOC2012_LABELS_DIR):
@@ -47,7 +47,7 @@ for xml_file in xml_files:
     # write to file
     with open(os.path.join(VOC2012_LABELS_DIR, label_file), 'a') as f:
       f.write(f"{class_id} {x_center} {y_center} {width} {height}\n")
-  print(f'Created data/VOC2012/Labels/{label_file}')
+  print(f'Created data/VOC2012/labels/{label_file}')
 
 # write class names to file
 with open(VOC2012_NAMES_FILE, 'w') as f:
@@ -57,7 +57,7 @@ with open(VOC2012_NAMES_FILE, 'w') as f:
 # output
 print('')
 print(f'Created {len(class_names)} classes')
-print(f'Labels are in data/VOC2012/Labels')
+print(f'Labels are in data/VOC2012/labels')
 print(f'Names are in data/VOC2012/VOC2012.names')
 print(f'Data file is in config/VOC2012.data')
 print('')

@@ -27,6 +27,8 @@ function main() {
     echo "Updating dataset structure"
     mv "$HERE/VOCdevkit/VOC2012" "$HERE/VOC2012"
     rm -rf "$HERE/VOCdevkit"
+    # pytorchyolo expects `images` folder to have this specific name
+    mv "$HERE/VOC2012/JPEGImages" "$HERE/VOC2012/images"
   fi
 
   echo 'Converting model to yolo format'
@@ -39,7 +41,7 @@ function main() {
   echo 'Split dataset into train and validation'
   local DATASET_TRAIN_TXT_FILE="$PROJECT_ROOT/data/VOC2012/train.txt"
   local DATASET_VALID_TXT_FILE="$PROJECT_ROOT/data/VOC2012/valid.txt"
-  local DATASET_ALL_IMAGES_DIR="$PROJECT_ROOT/data/VOC2012/JPEGImages"
+  local DATASET_ALL_IMAGES_DIR="$PROJECT_ROOT/data/VOC2012/images"
   # Reset train.txt and valid.txt
   rm -f "$DATASET_TRAIN_TXT_FILE"
   rm -f "$DATASET_VALID_TXT_FILE"
