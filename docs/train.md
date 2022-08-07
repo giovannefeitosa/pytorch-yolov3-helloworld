@@ -53,7 +53,7 @@ Then I changed `batch=16` to `batch=1` in this file: `config/custom.cfg`
 Slow
 
 ```
-poetry run yolo-train --n_cpu 5 --epochs 300 --data config/custom.data  --pretrained_weights weights/darknet53.conv.74
+poetry run yolo-train --n_cpu 8 --epochs 300 --data config/coco.data --model config/yolov3.cfg --pretrained_weights weights/darknet53.conv.74
 ```
 
 #### Yolov3 Tiny (pretrained)
@@ -61,7 +61,7 @@ poetry run yolo-train --n_cpu 5 --epochs 300 --data config/custom.data  --pretra
 Not working (infer identifies everything as person)
 
 ```
-poetry run yolo-train --n_cpu 5 --epochs 300 --data config/custom.data --model config/yolov3-tiny.cfg  --pretrained_weights weights/yolov3-tiny.weights
+poetry run yolo-train --n_cpu 8 --epochs 1 --data config/yolov3-tiny.data --model config/yolov3-tiny.cfg --pretrained_weights weights/yolov3-tiny.weights
 ```
 
 ## Open Tensorboard

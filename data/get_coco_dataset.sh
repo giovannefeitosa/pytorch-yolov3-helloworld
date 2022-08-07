@@ -89,15 +89,15 @@ function main() {
 
   # @FIX
   # some txt files in validation labels does not exists
-  # because of this we are going 
+  # because of this we are going to create a txt file manually
   local COCO_TRAIN_TXT_FILE="$BASE_COCO_DIR/trainvalno5k.txt"
   local COCO_TRAIN_IMAGES_DIR="$TRAIN_IMAGES_DIR"
   local COCO_VAL_TXT_FILE="$BASE_COCO_DIR/5k.txt"
   local COCO_VAL_IMAGES_DIR="$VAL_IMAGES_DIR"
   # For all files inside COCO_VAL_IMAGES_DIR
   # update COCO_VAL_TXT_FILE with paths to images
-  find "$COCO_TRAIN_IMAGES_DIR" > "$COCO_TRAIN_TXT_FILE"
-  find "$COCO_VAL_IMAGES_DIR" > "$COCO_VAL_TXT_FILE"
+  find "$COCO_TRAIN_IMAGES_DIR" -type f | grep "jpg" > "$COCO_TRAIN_TXT_FILE"
+  find "$COCO_VAL_IMAGES_DIR" -type f | grep "jpg" > "$COCO_VAL_TXT_FILE"
 }
 
 main
