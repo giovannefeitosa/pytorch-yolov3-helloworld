@@ -5,14 +5,14 @@ function main() {
   local HERE=$(cd $(dirname $0) && pwd -P)
   local PROJECT_ROOT=$(cd $HERE/.. && pwd -P)
 
-  local BASE_COCO_DIR    = "$HERE/coco"
+  local BASE_COCO_DIR="$HERE/coco"
   # images
-  local BASE_IMAGES_DIR  = "$BASE_COCO_DIR/images"
-  local TRAIN_IMAGES_DIR = "$BASE_IMAGES_DIR/train2014"
-  local VAL_IMAGES_DIR   = "$BASE_COCO_DIR/images/val2014"
+  local BASE_IMAGES_DIR="$BASE_COCO_DIR/images"
+  local TRAIN_IMAGES_DIR="$BASE_IMAGES_DIR/train2014"
+  local VAL_IMAGES_DIR="$BASE_COCO_DIR/images/val2014"
   # labels
-  local TRAIN_LABELS_DIR = "$BASE_COCO_DIR/labels/train2014"
-  local VAL_LABELS_DIR   = "$BASE_COCO_DIR/labels/val2014"
+  local TRAIN_LABELS_DIR="$BASE_COCO_DIR/labels/train2014"
+  local VAL_LABELS_DIR="$BASE_COCO_DIR/labels/val2014"
 
   echo "HERE=$HERE"
   echo "PROJECT_ROOT=$PROJECT_ROOT"
@@ -90,10 +90,10 @@ function main() {
   # @FIX
   # some txt files in validation labels does not exists
   # because of this we are going 
-  local COCO_TRAIN_TXT_FILE   = "$BASE_COCO_DIR/trainvalno5k.txt"
-  local COCO_TRAIN_IMAGES_DIR = "$TRAIN_IMAGES_DIR"
-  local COCO_VAL_TXT_FILE     = "$BASE_COCO_DIR/5k.txt"
-  local COCO_VAL_IMAGES_DIR   = "$VAL_IMAGES_DIR"
+  local COCO_TRAIN_TXT_FILE="$BASE_COCO_DIR/trainvalno5k.txt"
+  local COCO_TRAIN_IMAGES_DIR="$TRAIN_IMAGES_DIR"
+  local COCO_VAL_TXT_FILE="$BASE_COCO_DIR/5k.txt"
+  local COCO_VAL_IMAGES_DIR="$VAL_IMAGES_DIR"
   # For all files inside COCO_VAL_IMAGES_DIR
   # update COCO_VAL_TXT_FILE with paths to images
   find "$COCO_TRAIN_IMAGES_DIR" > "$COCO_TRAIN_TXT_FILE"
