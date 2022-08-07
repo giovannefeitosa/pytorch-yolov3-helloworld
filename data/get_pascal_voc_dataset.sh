@@ -2,6 +2,8 @@
 # http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#devkit
 
 function main() {
+  set -e
+
   local HERE=$(cd $(dirname $0) && pwd -P)
   local PROJECT_ROOT=$(cd $HERE/.. && pwd -P)
 
@@ -28,7 +30,7 @@ function main() {
   fi
 
   echo 'Converting model to yolo format'
-  $PROJECT_ROOT/python_modules/bin/python \
+  python \
   $PROJECT_ROOT/etc/python_scripts/convert_pascal_voc_2012_dataset.py
 
   # @FIX
