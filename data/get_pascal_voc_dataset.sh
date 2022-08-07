@@ -8,28 +8,33 @@ function main() {
   local VOCTAR="$HERE/VOCtrainval_11-May-2012.tar"
 
   if [ ! -f "$VOCTAR" ]; then
-    wget \
+    echo "Downloading VOC2012 dataset..."
+    wget -q \
       -c "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/VOCtrainval_11-May-2012.tar" \
       -O "$VOCTAR"
   fi
 
   # untar
   if [ -f "$VOCTAR" ]; then
-    tar -xvf "$VOCTAR" -C "$HERE"
+    echo "Untarring VOC2012 dataset..."
+    tar -xf "$VOCTAR" -C "$HERE"
   fi
 
   # update folder stucture
   if [ -d "$HERE/VOCdevkit" ]; then
+    echo "Updating dataset structure"
     mv "$HERE/VOCdevkit/VOC2012" "$HERE/VOC2012"
     rm -rf "$HERE/VOCdevkit"
   fi
 
+  echo 'Converting model to yolo format'
   $PROJECT_ROOT/python_modules/bin/python \
   $PROJECT_ROOT/etc/python_scripts/convert_pascal_voc_2012_dataset.py
 
   # @FIX
   # some txt files in validation labels does not exists
   # because of this we are going to create a txt file manually
+  echo 'Split dataset into train and validation'
   local DATASET_TRAIN_TXT_FILE="$PROJECT_ROOT/data/VOC2012/train.txt"
   local DATASET_VALID_TXT_FILE="$PROJECT_ROOT/data/VOC2012/valid.txt"
   local DATASET_ALL_IMAGES_DIR="$PROJECT_ROOT/data/VOC2012/JPEGImages"
