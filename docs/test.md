@@ -8,7 +8,21 @@ poetry run yolo-test -w weights/darknet53.conv.74
 # How to test yolo tiny
 
 ```
-poetry run yolo-test -w weights/yolov3-tiny.weights -m config/yolov3-tiny.cfg --data config/yolov3-tiny.data
+yolov3_tiny_yolo_test () {
+  WEIGHTS_PATH='weights/yolov3-tiny.weights'
+  MODEL_PATH='config/yolov3-tiny.cfg'
+  DATA_PATH='config/coco.data'
+  poetry run yolo-test -w "$WEIGHTS_PATH" -m "$MODEL_PATH" --data "$DATA_PATH" --n_cpu 5
+}; yolov3_tiny_yolo_test
+```
+```
+yolov3_tiny_yolo_detect () {
+  WEIGHTS_PATH='weights/yolov3-tiny.weights'
+  MODEL_PATH='config/yolov3-tiny.cfg'
+  NAMES_PATH='data/coco.names'
+  IMAGES_PATH='data/samples'
+  poetry run yolo-detect -w "$WEIGHTS_PATH" -m "$MODEL_PATH" -c "$NAMES_PATH" --n_cpu 5 --images "$IMAGES_PATH"
+}; yolov3_tiny_yolo_detect
 ```
 
 Not possible to do this test because of the `data` file.
@@ -52,23 +66,7 @@ poetry run yolo-detect -w checkpoints/yolov3_ckpt_300.pth -m config/yolov3-tiny.
 
 ---
 
-Test yolov3 tiny
+> single line test yolov3 tiny - WITH VOC DOES NOT WORK
+> 
+> poetry run yolo-detect -w "weights/yolov3-tiny.weights" -m "config/yolov3-tiny.cfg" -c "data/VOC2012/voc2012.names" --n_cpu 5 --images "data/> samples"
 
-```
-MODEL_PATH='config/yolov3-tiny.cfg' \
-WEIGHTS_PATH='weights/yolov3-tiny.weights' \
-NAMES_PATH='data/VOC2012/voc2012.names' \
-IMAGES_PATH='data/samples' \
-poetry run yolo-detect \
-  -w "$WEIGHTS_PATH" \
-  -m "$MODEL_PATH" \
-  -c "$(cat $NAMES_PATH)" \
-  --n_cpu 5 \
-  --images "$IMAGES_PATH"
-```
-
-single line test yolov3 tiny
-
-```
-poetry run yolo-detect -w "weights/yolov3-tiny.weights" -m "config/yolov3-tiny.cfg" -c "data/VOC2012/voc2012.names" --n_cpu 5 --images "data/samples"
-```
