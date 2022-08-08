@@ -52,10 +52,12 @@ poetry run yolo-detect -w checkpoints/yolov3_ckpt_300.pth -m config/yolov3-tiny.
 
 ---
 
+Test yolov3 tiny
+
 ```
 MODEL_PATH='config/yolov3-tiny.cfg' \
-WEIGHTS_PATH='checkpoints/yolov3_ckpt_300.pth' \
-NAMES_PATH='data/custom/classes.names' \
+WEIGHTS_PATH='weights/yolov3-tiny.weights' \
+NAMES_PATH='data/VOC2012/voc2012.names' \
 IMAGES_PATH='data/samples' \
 poetry run yolo-detect \
   -w "$WEIGHTS_PATH" \
@@ -63,4 +65,10 @@ poetry run yolo-detect \
   -c "$(cat $NAMES_PATH)" \
   --n_cpu 5 \
   --images "$IMAGES_PATH"
+```
+
+single line test yolov3 tiny
+
+```
+poetry run yolo-detect -w "weights/yolov3-tiny.weights" -m "config/yolov3-tiny.cfg" -c "data/VOC2012/voc2012.names" --n_cpu 5 --images "data/samples"
 ```
