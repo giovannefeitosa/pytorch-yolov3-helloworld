@@ -111,8 +111,10 @@ function main() {
   # update COCO_*_TXT_FILE with paths to images
 
   # find all txt files, replace `.txt` by `.jpg` and save to train.txt and val.txt
+  echo "create $COCO_TRAIN_TXT_FILE"
   find "$TRAIN_LABELS_DIR" -type f | grep "txt" | sed "s/\.txt/\.jpg/g" | sed "s/labels/images/" > "$COCO_TRAIN_TXT_FILE"
-  find "$VAL_LABELS_DIR" -type f | grep "txt" | sed "s/\.txt/\.jpg/g" | sed "s/labels/images/" > "$COCO_TRAIN_TXT_FILE"
+  echo "create $COCO_VAL_TXT_FILE"
+  find "$VAL_LABELS_DIR" -type f | grep "txt" | sed "s/\.txt/\.jpg/g" | sed "s/labels/images/" > "$COCO_VAL_TXT_FILE"
 
   cd "$PROJECT_ROOT"
 }
