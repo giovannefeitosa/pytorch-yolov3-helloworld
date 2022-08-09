@@ -113,6 +113,8 @@ function main() {
   # find all txt files, replace `.txt` by `.jpg` and save to train.txt and val.txt
   find "$TRAIN_LABELS_DIR" -type f | grep "txt" | sed "s/\.txt/\.jpg/g" | sed "s/labels/images/" > "$COCO_TRAIN_TXT_FILE"
   find "$VAL_LABELS_DIR" -type f | grep "txt" | sed "s/\.txt/\.jpg/g" | sed "s/labels/images/" > "$COCO_TRAIN_TXT_FILE"
+
+  cd "$PROJECT_ROOT"
 }
 
 main
