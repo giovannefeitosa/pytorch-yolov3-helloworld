@@ -12,6 +12,7 @@ jobs:
         with:
           python-version: '3.7'
           #cache: 'poetry'
+      - uses: iterative/setup-dvc@v1
       - run: pip install poetry --user
       - run: $HOME/.local/bin/poetry install
 
@@ -68,15 +69,18 @@ jobs:
       - name: Download weights
         run: /bin/bash ./weights/download_weights.sh
       
-      ##- if: ${{ steps.cache-weights-datasets.outputs.cache-hit == 'false' }}
       - name: Download coco dataset
         run: /bin/bash ./data/get_coco_dataset.sh
-      #- name: Demo Training
-      #  run: $HOME/.local/bin/poetry run yolo-train --n_cpu 8 --epochs 1 --data config/coco.data  --model config/yolov3.cfg --pretrained_weights weights/darknet53.conv.74
-      #- name: Download VOC2012 dataset
-      #  run: /bin/bash ./data/get_pascal_voc_dataset.sh
+
+      - name: Pull dvc data
+        run: dvc pull -r origin
+
       - name: Demo Training
-        run: $HOME/.local/bin/poetry run yolo-train --n_cpu 8 --epochs 5 --data config/coco.data --model config/yolov3-tiny.cfg --pretrained_weights weights/yolov3-tiny.weights
+        run: $HOME/.local/bin/poetry run yolo-train --n_cpu 8 --epochs 1 --data config/coco.data --model config/yolov3-tiny.cfg --pretrained_weights checkpoints/checkpoints/$(ls checkpoints/checkpoints | grep ".pth" | tail -1)
+        #run: $HOME/.local/bin/poetry run yolo-train --n_cpu 8 --epochs 5 --data config/coco.data --model config/yolov3-tiny.cfg --pretrained_weights weights/yolov3-tiny.weights
+      
+      - name: Push to dvc
+        run: dvc push -r origin
       #- name: Demo Training
       #  run: $HOME/.local/bin/poetry run yolo-train --n_cpu 8 --epochs 5 --data config/yolov3-tiny.data --model config/yolov3-tiny.cfg --pretrained_weights weights/yolov3-tiny.weights
 

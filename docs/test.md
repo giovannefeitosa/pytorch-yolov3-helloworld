@@ -7,6 +7,8 @@ poetry run yolo-test -w weights/darknet53.conv.74
 
 # How to test yolo tiny
 
+against valid.txt, outputs in terminal
+
 ```
 yolov3_tiny_yolo_test () {
   WEIGHTS_PATH='weights/yolov3-tiny.weights'
@@ -15,6 +17,10 @@ yolov3_tiny_yolo_test () {
   poetry run yolo-test -w "$WEIGHTS_PATH" -m "$MODEL_PATH" --data "$DATA_PATH" --n_cpu 5
 }; yolov3_tiny_yolo_test
 ```
+
+against $IMAGE_PATH, outputs in `outputs/`
+using default downloaded weights.
+
 ```
 yolov3_tiny_yolo_detect () {
   WEIGHTS_PATH='weights/yolov3-tiny.weights'
@@ -25,7 +31,19 @@ yolov3_tiny_yolo_detect () {
 }; yolov3_tiny_yolo_detect
 ```
 
-Not possible to do this test because of the `data` file.
+yolov3 tiny with the last checkpoint
+get samples and output in `outputs/`
+
+```
+yolov3_tiny_yolo_detect_checkpoint () {
+  WEIGHTS_PATH=checkpoints/checkpoints/$(ls checkpoints/checkpoints | grep ".pth" | tail -1)
+  MODEL_PATH='config/yolov3-tiny.cfg'
+  NAMES_PATH='data/coco.names'
+  IMAGES_PATH='data/samples'
+  poetry run yolo-detect -w "$WEIGHTS_PATH" -m "$MODEL_PATH" -c "$NAMES_PATH" --n_cpu 5 --images "$IMAGES_PATH"
+}; yolov3_tiny_yolo_detect_checkpoint
+```
+
 
 The `data` file is like this:
 
