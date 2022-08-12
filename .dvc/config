@@ -1,4 +1,6 @@
 [core]
     autostage = false
+    remote = origin
 ['remote "origin"']
-    url = gdrive://1Rfct6_0EAI9oBnKAGGiWO-wSynv3lCUE
+    url = s3://pytorch-yolov3-helloworld/yolov3-tiny-coco
+    region = us-east-1
