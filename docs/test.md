@@ -70,12 +70,6 @@ So I need to have this data for yolov3-tiny, and I have to download:
 * yolov3-tiny valid txt files
 * yolov3-tiny names file
 
-> I need to know what is `eval`
-
-## What is Eval?
-
-?
-
 # How to test a custom weights file
 
 ```
