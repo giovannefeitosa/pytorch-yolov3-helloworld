@@ -1,0 +1,4 @@
+classes=1
+train=io/datasets/person/train.txt
+valid=io/datasets/person/test.txt
+names=io/datasets/person/classes.txt

@@ -76,11 +76,11 @@ jobs:
         run: dvc pull -r origin
 
       - name: Demo Training
-        run: $HOME/.local/bin/poetry run yolo-train --n_cpu 8 --epochs 1 --data config/coco.data --model config/yolov3-tiny.cfg --pretrained_weights checkpoints/checkpoints/$(ls checkpoints/checkpoints | grep ".pth" | tail -1)
+        run: $HOME/.local/bin/poetry run yolo-train --n_cpu 8 --epochs 100 --data config/person-yolov3-tiny.data --model config/person-yolov3-tiny.cfg --pretrained_weights weights/yolov3-tiny.weights
         #run: $HOME/.local/bin/poetry run yolo-train --n_cpu 8 --epochs 5 --data config/coco.data --model config/yolov3-tiny.cfg --pretrained_weights weights/yolov3-tiny.weights
       
-      - name: Push to dvc
-        run: dvc push -r origin
+      #- name: Push to dvc
+      #  run: dvc push -r origin
       #- name: Demo Training
       #  run: $HOME/.local/bin/poetry run yolo-train --n_cpu 8 --epochs 5 --data config/yolov3-tiny.data --model config/yolov3-tiny.cfg --pretrained_weights weights/yolov3-tiny.weights
 
