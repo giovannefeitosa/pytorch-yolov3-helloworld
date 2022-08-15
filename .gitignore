@@ -28,5 +28,4 @@ coco/
 labels.tar.gz
 images.tar.gz
 /checkpoints
-io/*
-!io/.gitkeep
+io/datasets/*
