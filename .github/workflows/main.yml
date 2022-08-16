@@ -75,6 +75,9 @@ jobs:
       - name: Pull dvc data
         run: dvc pull -r origin
 
+      - name: Prepare
+        run: /bin/bash ./etc/scripts/prepare-person-dataset.sh
+
       - name: Demo Training
         run: $HOME/.local/bin/poetry run yolo-train --n_cpu 8 --epochs 100 --data config/person-yolov3-tiny.data --model config/person-yolov3-tiny.cfg --pretrained_weights weights/yolov3-tiny.weights
         #run: $HOME/.local/bin/poetry run yolo-train --n_cpu 8 --epochs 5 --data config/coco.data --model config/yolov3-tiny.cfg --pretrained_weights weights/yolov3-tiny.weights
