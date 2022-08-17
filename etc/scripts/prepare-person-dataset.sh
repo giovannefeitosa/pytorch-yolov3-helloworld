@@ -27,7 +27,7 @@ function copy_part_with_absolute_path() {
   local INPUT_PART="$1"
   local OUTPUT_TXT="$2"
   # reset OUTPUT_TXT
-  echo "" > "$OUTPUT_TXT"
+  rm -f "$OUTPUT_TXT"
   # foreach line in INPUT_PART
   for line in $(cat "$INPUT_PART"); do
     # split line into two parts
